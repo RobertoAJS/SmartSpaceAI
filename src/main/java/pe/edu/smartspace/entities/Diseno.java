@@ -2,8 +2,7 @@ package pe.edu.smartspace.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "disenos")
@@ -16,9 +15,13 @@ public class Diseno {
     private Long id;
 
     private String nombre;
-    private LocalDateTime fechaCreacion;
 
-    // Relacion con Usuario (un usuario tiene muchos disenos)
+    @Temporal(TemporalType.DATE)
+    private Date fechaCreacion;
+
+    private String estado;
+
+    // Relación con usuario
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;

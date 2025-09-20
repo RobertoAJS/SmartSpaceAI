@@ -1,7 +1,9 @@
 package pe.edu.smartspace.controllers;
 
 import org.springframework.web.bind.annotation.*;
+import pe.edu.smartspace.dtos.UsuarioDTO;
 import pe.edu.smartspace.entities.Usuario;
+import pe.edu.smartspace.mappers.UsuarioMapper;
 import pe.edu.smartspace.servicesinterfaces.IUsuarioService;
 
 import java.util.List;
@@ -13,21 +15,28 @@ public class UsuarioController {
     private final IUsuarioService usuarioService;
 
     public UsuarioController(IUsuarioService usuarioService) {
+
         this.usuarioService = usuarioService;
     }
 
     @PostMapping
-    public Usuario registrar(@RequestBody Usuario usuario) {
-        return usuarioService.registrarUsuario(usuario);
+    public UsuarioDTO registrar(@RequestBody UsuarioDTO usuarioDTO) {
+        Usuario usuario = UsuarioMapper.toEntity(usuarioDTO);
+        Usuario savedUsuario = usuarioService.registrarUsuario(usuario);
+        return UsuarioMapper.toDTO(savedUsuario);
     }
 
     @GetMapping
-    public List<Usuario> listar() {
-        return usuarioService.listarUsuarios();
+    public List<UsuarioDTO> listar() {
+        return usuarioService.listarUsuarios()
+                .stream()
+                .map(UsuarioMapper::toDTO)
+                .toList();
     }
 
     @GetMapping("/{id}")
-    public Usuario buscar(@PathVariable Long id) {
-        return usuarioService.buscarPorId(id);
+    public UsuarioDTO buscar(@PathVariable Long id) {
+        Usuario usuario = usuarioService.buscarPorId(id);
+        return UsuarioMapper.toDTO(usuario);
     }
 }

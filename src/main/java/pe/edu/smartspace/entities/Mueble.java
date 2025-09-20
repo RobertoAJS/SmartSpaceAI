@@ -3,8 +3,6 @@ package pe.edu.smartspace.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
-
 @Entity
 @Table(name = "muebles")
 @Getter @Setter
@@ -17,6 +15,9 @@ public class Mueble {
 
     private String nombre;
     private String categoria;
-    private String descripcion;
-
+    private String dimension;
+    private String estilo;
+    private Double precio;
+    private Boolean sostenibilidad;
+    private String proveedor;
 }
