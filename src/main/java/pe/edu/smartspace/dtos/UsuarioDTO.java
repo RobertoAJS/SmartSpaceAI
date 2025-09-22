@@ -1,5 +1,6 @@
 package pe.edu.smartspace.dtos;
 
+
 public class UsuarioDTO {
 
     private Long id;
