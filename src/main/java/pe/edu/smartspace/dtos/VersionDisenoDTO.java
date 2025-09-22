@@ -1,7 +1,5 @@
 package pe.edu.smartspace.dtos;
 
-import lombok.*;
-
 import java.time.LocalDate;
 
 public class VersionDisenoDTO {
