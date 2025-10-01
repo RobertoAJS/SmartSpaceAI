@@ -17,9 +17,8 @@ public class UsuarioServiceImpl implements IUsuarioService {
     }
 
     @Override
-    public Usuario registrarUsuario(Usuario usuario) {
-        return usuarioRepository.save(usuario);
-    }
+    public Usuario registrarUsuario(Usuario usuario) { return usuarioRepository.save(usuario); }
+
 
     @Override
     public List<Usuario> listarUsuarios() {

@@ -28,4 +28,44 @@ public class VersionDiseno {
 
     @Column(length = 255)
     private String comentarios;
+
+    public String getArchivoModelo() {
+        return archivoModelo;
+    }
+
+    public void setArchivoModelo(String archivoModelo) {
+        this.archivoModelo = archivoModelo;
+    }
+
+    public String getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(String comentarios) {
+        this.comentarios = comentarios;
+    }
+
+    public Diseno getDiseno() {
+        return diseno;
+    }
+
+    public void setDiseno(Diseno diseno) {
+        this.diseno = diseno;
+    }
+
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
+
+    public Long getIdVersion() {
+        return idVersion;
+    }
+
+    public void setIdVersion(Long idVersion) {
+        this.idVersion = idVersion;
+    }
 }

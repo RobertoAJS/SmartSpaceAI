@@ -30,4 +30,44 @@ public class Comentario {
 
     @Column(name = "fecha")
     private LocalDate fecha;
+
+    public Diseno getDiseno() {
+        return diseno;
+    }
+
+    public void setDiseno(Diseno diseno) {
+        this.diseno = diseno;
+    }
+
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
+
+    public Long getIdComentario() {
+        return idComentario;
+    }
+
+    public void setIdComentario(Long idComentario) {
+        this.idComentario = idComentario;
+    }
+
+    public String getTextoComentario() {
+        return textoComentario;
+    }
+
+    public void setTextoComentario(String textoComentario) {
+        this.textoComentario = textoComentario;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 }
