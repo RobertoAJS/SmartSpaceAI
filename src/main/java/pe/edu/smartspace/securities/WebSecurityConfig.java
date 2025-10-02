@@ -58,9 +58,16 @@ public class WebSecurityConfig {
         httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req -> req
-                        .requestMatchers("/auth/login", "/auth/register").permitAll() // corregí prefijo /auth/*
-                        .anyRequest().authenticated()
-                )
+                .requestMatchers(
+                "/auth/login",
+                "/auth/register",
+                "/swagger-ui/**",
+                "/v3/api-docs/**",
+                "/v3/api-docs.yaml"
+            ).permitAll()
+        .anyRequest().authenticated()
+)
+
                 .httpBasic(Customizer.withDefaults())
                 .formLogin(AbstractHttpConfigurer::disable)
                 .exceptionHandling(e -> e.authenticationEntryPoint(jwtAuthenticationEntryPoint))
