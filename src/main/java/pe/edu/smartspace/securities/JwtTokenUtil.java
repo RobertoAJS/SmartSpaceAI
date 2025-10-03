@@ -18,17 +18,12 @@ import java.util.function.Function;
 @Component
 public class JwtTokenUtil {
 
-    // 🔑 Se inyecta desde application.properties
     @Value("${jwt.secret}")
     private String secret;
 
     // Tiempo de validez del token: 5 horas
     public static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
 
-    /**
-     * Genera la clave secreta a partir del string configurado.
-     * Con JJWT 0.13.0 se recomienda usar Keys.hmacShaKeyFor().
-     */
     private SecretKey getSignInKey() {
         return Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
     }
