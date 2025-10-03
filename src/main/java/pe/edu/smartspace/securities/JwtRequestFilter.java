@@ -55,7 +55,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 logger.error("El token JWT ha expirado", e);
             }
         } else if (requestTokenHeader != null) {
-            // Si mandaron algo distinto a Bearer → logueamos en DEBUG, no en WARN
+            // Si mandaron algo distinto a Bearer, se loguea en DEBUG, no en WARN
             logger.debug("Header Authorization presente pero no inicia con 'Bearer '");
         }
 
