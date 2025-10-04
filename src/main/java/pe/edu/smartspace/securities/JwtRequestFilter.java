@@ -1,3 +1,4 @@
+
 package pe.edu.smartspace.securities;
 
 import io.jsonwebtoken.ExpiredJwtException;
@@ -29,39 +30,51 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
 
+        final String path = request.getServletPath();
+
+        if (path.startsWith("/auth")
+                || path.startsWith("/swagger-ui")
+                || path.startsWith("/v3/api-docs")
+                || path.startsWith("/swagger-resources")
+                || path.startsWith("/webjars")) {
+            chain.doFilter(request, response);
+            return;
+        }
+
         final String requestTokenHeader = request.getHeader("Authorization");
 
         String username = null;
         String jwtToken = null;
 
-        // Token debe empezar con "Bearer "
         if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
             jwtToken = requestTokenHeader.substring(7);
-
             try {
                 username = jwtTokenUtil.getUsernameFromToken(jwtToken);
             } catch (IllegalArgumentException e) {
-                System.out.println("No se puede encontrar el token JWT");
+                logger.error("No se pudo obtener el token JWT", e);
             } catch (ExpiredJwtException e) {
-                System.out.println("Token JWT ha expirado");
+                logger.error("El token JWT ha expirado", e);
             }
-        } else {
-            logger.warn("JWT Token no inicia con la palabra Bearer");
+        } else if (requestTokenHeader != null) {
+            // Si mandaron algo distinto a Bearer, se loguea en DEBUG, no en WARN
+            logger.debug("Header Authorization presente pero no inicia con 'Bearer '");
         }
 
-        // Validación
+        // Validación del token
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = this.jwtUserDetailsService.loadUserByUsername(username);
 
             if (jwtTokenUtil.validateToken(jwtToken, userDetails)) {
-                UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                        userDetails, null, userDetails.getAuthorities());
+                UsernamePasswordAuthenticationToken authToken =
+                        new UsernamePasswordAuthenticationToken(
+                                userDetails, null, userDetails.getAuthorities());
 
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }
         }
+
         chain.doFilter(request, response);
     }
 }
