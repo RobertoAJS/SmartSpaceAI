@@ -10,4 +10,5 @@ public class SmartspaceApplication {
         SpringApplication.run(SmartspaceApplication.class, args);
     }
 
+
 }
