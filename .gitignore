@@ -15,8 +15,6 @@ target/
 
 ### IntelliJ IDEA ###
 .idea
-.env
-.env.*
 *.iws
 *.iml
 *.ipr
