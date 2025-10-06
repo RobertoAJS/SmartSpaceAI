@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smartspace | Diseña tus espacios</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+<!-- Header -->
+<header class="header">
+    <div class="container">
+        <h1 class="logo">Smartspace</h1>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#funcionalidades">Funcionalidades</a></li>
+                <li><a href="#screenshots">Screenshots</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Hero -->
+<section id="inicio" class="hero fade-in">
+    <div class="container hero-content">
+        <div class="hero-text">
+            <h2>Smartspace es tu aliado en la tarea de idear nuevos espacios</h2>
+            <p>Porque te mereces vivir como te guste.</p>
+            <a href="#funcionalidades" class="btn-primary">Diseña tu mueble</a>
+        </div>
+        <div class="hero-image">
+            <!-- 🖼️ Espacio para imagen -->
+            <img src="images/hero-placeholder.png" alt="Diseño de interiores Smartspace">
+        </div>
+    </div>
+</section>
+
+<!-- Funcionalidades -->
+<section id="funcionalidades" class="features fade-in">
+    <div class="container">
+        <h2>Funcionalidades Principales</h2>
+        <div class="cards">
+            <div class="card">
+                <h3>Diseño Personalizado</h3>
+                <p>Crea y ajusta tus muebles de acuerdo con tu espacio e inspiración.</p>
+            </div>
+            <div class="card">
+                <h3>Gestión de Portafolio</h3>
+                <p>Organiza tus ideas y proyectos de manera práctica y visual.</p>
+            </div>
+            <div class="card">
+                <h3>Herramientas Interactivas</h3>
+                <p>Explora módulos para experimentar con estilos, colores y materiales.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Screenshots -->
+<section id="screenshots" class="screens fade-in">
+    <div class="container">
+        <h2>Explora Smartspace</h2>
+        <p>Descubre cómo funciona nuestra app a través de imágenes o un video demo.</p>
+        <div class="image-gallery">
+            <!-- 🖼️ Espacio para screenshots -->
+            <img src="images/placeholder1.png" alt="Pantalla 1">
+            <img src="images/placeholder2.png" alt="Pantalla 2">
+            <img src="images/placeholder3.png" alt="Pantalla 3">
+        </div>
+    </div>
+</section>
+
+<!-- CTA Final -->
+<section class="cta fade-in">
+    <div class="container">
+        <h2>Crea, diseña y transforma tus espacios con Smartspace</h2>
+        <a href="#contacto" class="btn-secondary">Explora herramientas</a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer id="contacto" class="footer">
+    <div class="container footer-content">
+        <p>📧 Contacto: <a href="mailto:info@smartspace.com">info@smartspace.com</a></p>
+        <p>
+            🌐 Síguenos:
+            <a href="https://www.instagram.com/smartspace_app" target="_blank">Instagram</a> |
+            <a href="https://www.facebook.com/smartspaceapp" target="_blank">Facebook</a>
+        </p>
+        <p>© 2025 Smartspace. Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+<script>
+    // Activar animación fade-in al hacer scroll
+    const fadeElements = document.querySelectorAll('.fade-in');
+    const appearOptions = { threshold: 0.2 };
+
+    const appearOnScroll = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('appear');
+        observer.unobserve(entry.target);
+      });
+    }, appearOptions);
+
+    fadeElements.forEach(el => appearOnScroll.observe(el));
+</script>
+</body>
+</html>
